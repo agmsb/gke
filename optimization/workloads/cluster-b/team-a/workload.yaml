@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    team: team-a
+  name: team-a-workload
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: team-a-workload
+  template:
+    metadata:
+      labels:
+        app: team-a-workload
+    spec:
+      containers:
+      - image: progrium/stress
+        name: stress
+        resources:
+          requests:
+            cpu: 0.5
+            memory: 128Mi
+        command:
+        - /bin/sh
+        - -c
+        - stress --cpu 2
