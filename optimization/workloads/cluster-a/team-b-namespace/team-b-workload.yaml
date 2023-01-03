@@ -2,17 +2,17 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: stresstest
-  name: stresstest
+    team: team-b
+  name: team-b-workload
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: stresstest
+      app: team-b-workload
   template:
     metadata:
       labels:
-        app: stresstest
+        app: team-b-workload
     spec:
       containers:
       - image: progrium/stress
