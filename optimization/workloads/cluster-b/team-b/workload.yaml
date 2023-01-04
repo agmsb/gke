@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   labels:
     team: team-b
-  name: team-b-workload
+  name: beta-two
 spec:
   replicas: 1
   selector:

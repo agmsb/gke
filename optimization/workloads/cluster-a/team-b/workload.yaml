@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   labels:
     team: team-b
-  name: team-b-workload
+  name: beta-one
 spec:
   replicas: 1
   selector:
@@ -19,9 +19,9 @@ spec:
         name: stress
         resources:
           requests:
-            cpu: 2
+            cpu: 1
             memory: 256Mi
         command:
         - /bin/sh
         - -c
-        - stress --cpu 1 --vm 2 --vm-bytes 2048M
+        - stress --cpu 0.5 --vm 2 --vm-bytes 2048M
