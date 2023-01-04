@@ -19,7 +19,7 @@ spec:
         name: stress
         resources:
           requests:
-            cpu: 0.5
+            cpu: 4
             memory: 128Mi
         command:
         - /bin/sh
