@@ -25,4 +25,4 @@ spec:
         command:
         - /bin/sh
         - -c
-        - stress --cpu 1 --vm 2 --vm-bytes 1024M
+        - stress --cpu 1 --vm 1 --vm-bytes 1024M
