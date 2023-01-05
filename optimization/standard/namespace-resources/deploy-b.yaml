@@ -20,9 +20,9 @@ spec:
         name: stress
         resources:
           requests:
-            cpu: 1
+            cpu: 2
             memory: 256Mi
         command:
         - /bin/sh
         - -c
-        - stress --cpu 1 --vm 1 --vm-bytes 1024M
+        - stress --vm 1 --vm-bytes 1024M
