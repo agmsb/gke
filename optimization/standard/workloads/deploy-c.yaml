@@ -4,6 +4,7 @@ metadata:
   labels:
     team: team-c
   name: gamma
+  namespace: team-c
 spec:
   replicas: 10
   selector:
