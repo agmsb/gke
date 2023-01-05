@@ -3,7 +3,8 @@ kind: Deployment
 metadata:
   labels:
     team: team-a
-  name: alpha-one
+  name: alpha
+  namespace: team-a
 spec:
   replicas: 1
   selector:
@@ -20,8 +21,8 @@ spec:
         resources:
           requests:
             cpu: 2
-            memory: 128Mi
+            memory: 4Gi
         command:
         - /bin/sh
         - -c
-        - stress --cpu 1
+        - stress --cpu 1 --vm 4 --vm-bytes 64M

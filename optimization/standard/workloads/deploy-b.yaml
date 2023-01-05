@@ -2,17 +2,17 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    team: team-d
-  name: team-d-workload
+    team: team-b
+  name: beta
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: team-d-workload
+      app: team-b-workload
   template:
     metadata:
       labels:
-        app: team-d-workload
+        app: team-b-workload
     spec:
       containers:
       - image: progrium/stress
@@ -24,4 +24,4 @@ spec:
         command:
         - /bin/sh
         - -c
-        - stress --cpu 2
+        - stress --cpu 1 --vm 2 --vm-bytes 1024

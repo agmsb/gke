@@ -2,26 +2,26 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    team: team-b
-  name: beta-one
+    team: team-c
+  name: gamma
 spec:
-  replicas: 1
+  replicas: 10
   selector:
     matchLabels:
-      app: team-b-workload
+      app: team-c-workload
   template:
     metadata:
       labels:
-        app: team-b-workload
+        app: team-c-workload
     spec:
       containers:
       - image: progrium/stress
         name: stress
         resources:
           requests:
-            cpu: 1
+            cpu: 100mi
             memory: 256Mi
         command:
         - /bin/sh
         - -c
-        - stress --cpu 0.5 --vm 2 --vm-bytes 2048M
+        - stress --vm 2 --vm-bytes 128M
