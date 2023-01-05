@@ -6,7 +6,7 @@ metadata:
   name: alpha
   namespace: team-a
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: team-a-workload
@@ -20,7 +20,7 @@ spec:
         name: stress
         resources:
           requests:
-            cpu: 2
+            cpu: 3
             memory: 4Gi
         command:
         - /bin/sh
