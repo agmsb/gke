@@ -6,7 +6,7 @@ metadata:
   name: beta
   namespace: team-b
 spec:
-  replicas: 4
+  replicas: 1
   selector:
     matchLabels:
       app: team-b-workload
@@ -25,4 +25,4 @@ spec:
         command:
         - /bin/sh
         - -c
-        - stress --vm 1 --vm-bytes 1024M
+        - timeout 3000s stress --vm 1 --vm-bytes 1024M
