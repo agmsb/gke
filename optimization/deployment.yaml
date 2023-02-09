@@ -6,7 +6,7 @@ metadata:
   name: alpha
   namespace: team-a
 spec:
-  replicas: 25
+  replicas: 20
   selector:
     matchLabels:
       app: team-a-workload
@@ -25,4 +25,4 @@ spec:
         command:
         - /bin/sh
         - -c
-        - stress --vm 1 --vm-bytes 1024m
+        - stress --c 1 --vm-bytes 128Mi
