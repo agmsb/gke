@@ -20,8 +20,8 @@ spec:
         name: stress
         resources:
           requests:
-            cpu: 100m
-            memory: 2Gi
+            cpu: 500m
+            memory: 500Mi
         command:
         - /bin/sh
         - -c
