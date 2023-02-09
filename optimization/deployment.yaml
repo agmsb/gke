@@ -4,6 +4,7 @@ metadata:
   labels:
     team: a
   name: alpha
+  namespace: team-a
 spec:
   replicas: 20
   selector:
