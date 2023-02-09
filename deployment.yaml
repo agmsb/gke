@@ -2,9 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    team: team-a
+    team: a
   name: alpha
-  namespace: team-a
 spec:
   replicas: 20
   selector:
