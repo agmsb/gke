@@ -25,4 +25,4 @@ spec:
         command:
         - /bin/sh
         - -c
-        - stress --c 1 --vm-bytes 128Mi
+        - stress -c 1 --vm-bytes 128Mi
