@@ -21,8 +21,8 @@ spec:
         resources:
           requests:
             cpu: 100m
-            memory: 500Mi
+            memory: 200Mi
         command:
         - /bin/sh
         - -c
-        - stress -c 1 --vm-bytes 128Mi
+        - stress -vm 1 --vm-bytes 128Mi
