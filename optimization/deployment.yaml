@@ -6,7 +6,7 @@ metadata:
   name: alpha
   namespace: team-a
 spec:
-  replicas: 50
+  replicas: 40
   selector:
     matchLabels:
       app: team-a-workload
