@@ -16,3 +16,12 @@ resource.labels.location="us-west1"
 resource.labels.cluster_name="oregon"
 logName="projects/agmsb-gke-lab/logs/container.googleapis.com%2Fcluster-autoscaler-visibility"
 jsonPayload.decision.scaleDown.nodesToBeRemoved.node.cpuRatio>50 
+
+# Query for scale down on nodes in node pool 001
+
+resource.type="k8s_cluster"
+resource.labels.project_id="agmsb-gke-lab"
+resource.labels.location="us-west1"
+resource.labels.cluster_name="oregon"
+logName="projects/agmsb-gke-lab/logs/container.googleapis.com%2Fcluster-autoscaler-visibility"
+jsonPayload.decision.scaleDown.nodesToBeRemoved.node.mig.nodepool="np-001" 
