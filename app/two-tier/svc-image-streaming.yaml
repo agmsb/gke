@@ -1,1 +1,17 @@
-
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+  labels:
+    stack: guestbook
+    app: guestbook
+    tier: frontend
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    stack: guestbook
+    app: guestbook
+    tier: frontend
+  loadBalancerIP: 34.106.0.75
