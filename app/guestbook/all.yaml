@@ -40,7 +40,7 @@ spec:
         tier: backend
     spec:
       containers:
-      - name: leader
+      - name: db-leader
         image: "docker.io/redis:6.0.5"
         resources:
           requests:
@@ -90,7 +90,7 @@ spec:
         tier: backend
     spec:
       containers:
-      - name: follower
+      - name: db-follower
         image: us-west3-docker.pkg.dev/agmsb-gke-lab/team-7-repository/db:1.0.0
         resources:
           requests:
@@ -145,7 +145,7 @@ spec:
         tier: frontend
     spec:
       containers:
-      - name: php-redis
+      - name: app
         image: us-west3-docker.pkg.dev/agmsb-gke-lab/team-7-repository/app:1.0.0
         env:
         - name: GET_HOSTS_FROM
