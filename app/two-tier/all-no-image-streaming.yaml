@@ -1,0 +1,170 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-leader
+  labels:
+    stack: guestbook
+    app: redis
+    role: leader
+    tier: backend
+spec:
+  ports:
+  - port: 6379
+    targetPort: 6379
+  selector:
+    stack: guestbook
+    app: redis
+    role: leader
+    tier: backend
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-leader
+  labels:
+    stack: guestbook
+    app: redis
+    role: leader
+    tier: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        stack: guestbook
+        app: redis
+        role: leader
+        tier: backend
+    spec:
+      containers:
+      - name: db-leader
+        image: us-west3-docker.pkg.dev/agmsb-gke-lab/team-7-repository/db-leader:1.0.0
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+        - containerPort: 6379
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-follower
+  labels:
+    stack: guestbook
+    app: redis
+    role: follower
+    tier: backend
+spec:
+  ports:
+  - port: 6379
+  selector:
+    stack: guestbook
+    app: redis
+    role: follower
+    tier: backend
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-follower
+  labels:
+    stack: guestbook
+    app: redis
+    role: follower
+    tier: backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        stack: guestbook
+        app: redis
+        role: follower
+        tier: backend
+    spec:
+      containers:
+      - name: db-follower
+        image: us-west3-docker.pkg.dev/agmsb-gke-lab/team-7-repository/db-follower:1.0.0
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+        - containerPort: 6379
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: stack
+                operator: In
+                values:
+                - guestbook
+            topologyKey: "kubernetes.io/hostname"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+  labels:
+    stack: guestbook
+    app: guestbook
+    tier: frontend
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    stack: guestbook
+    app: guestbook
+    tier: frontend
+  loadBalancerIP: 34.106.220.123
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+        stack: guestbook
+        app: guestbook
+        tier: frontend
+  template:
+    metadata:
+      labels:
+        stack: guestbook
+        app: guestbook
+        tier: frontend
+    spec:
+      containers:
+      - name: app
+        image: us-west3-docker.pkg.dev/agmsb-gke-lab/team-7-repository/app:1.0.0
+        env:
+        - name: GET_HOSTS_FROM
+          value: "dns"
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+        - containerPort: 80
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: stack
+                operator: In
+                values:
+                - guestbook
+            topologyKey: "kubernetes.io/hostname"
+---

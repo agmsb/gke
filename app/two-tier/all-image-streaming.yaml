@@ -125,6 +125,7 @@ spec:
     stack: guestbook
     app: guestbook
     tier: frontend
+  loadBalancerIP: 34.106.0.75
 ---
 apiVersion: apps/v1
 kind: Deployment
