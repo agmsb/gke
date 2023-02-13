@@ -41,7 +41,7 @@ spec:
     spec:
       containers:
       - name: db-leader
-        image: "docker.io/redis:6.0.5"
+        image: us-west3-docker.pkg.dev/agmsb-gke-lab/team-7-repository/db-leader:1.0.0
         resources:
           requests:
             cpu: 100m
@@ -91,7 +91,7 @@ spec:
     spec:
       containers:
       - name: db-follower
-        image: us-west3-docker.pkg.dev/agmsb-gke-lab/team-7-repository/db:1.0.0
+        image: us-west3-docker.pkg.dev/agmsb-gke-lab/team-7-repository/db-follower:1.0.0
         resources:
           requests:
             cpu: 100m
