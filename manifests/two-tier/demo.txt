@@ -1,1 +1,7 @@
-while true; do curl -s -o /dev/null -w "%{http_code} from app with image streaming\n" http://34.106.0.75:80; sleep 1; done
+# app with image streaming
+
+while true; do curl -s -o /dev/null -w "%{http_code} response code from app with image streaming\n" http://34.106.0.75:80; sleep 1; done
+
+# app with no image streaming
+
+while true; do curl -s -o /dev/null -w "%{http_code} response code from app with image streaming\n" http://34.106.220.123:80; sleep 1; done
