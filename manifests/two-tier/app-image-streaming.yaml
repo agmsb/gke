@@ -42,6 +42,7 @@ spec:
       containers:
       - name: db-leader
         image: us-west3-docker.pkg.dev/agmsb-gke-lab/team-7-repository/db-leader:1.0.0
+        imagePullPolicy: Always
         resources:
           requests:
             cpu: 100m
@@ -92,6 +93,7 @@ spec:
       containers:
       - name: db-follower
         image: us-west3-docker.pkg.dev/agmsb-gke-lab/team-7-repository/db-follower:1.0.0
+        imagePullPolicy: Always
         resources:
           requests:
             cpu: 100m
@@ -130,6 +132,7 @@ spec:
       containers:
       - name: app
         image: us-west3-docker.pkg.dev/agmsb-gke-lab/team-7-repository/app:1.0.0
+        imagePullPolicy: Always
         env:
         - name: GET_HOSTS_FROM
           value: "dns"
@@ -149,4 +152,3 @@ spec:
                 values:
                 - guestbook
             topologyKey: "kubernetes.io/hostname"
----
